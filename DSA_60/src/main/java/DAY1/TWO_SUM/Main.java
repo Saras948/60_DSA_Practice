@@ -1,5 +1,7 @@
 package DAY1.TWO_SUM;
 
+import java.util.HashMap;
+
 /*Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
     You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -35,8 +37,8 @@ package DAY1.TWO_SUM;
 */
 public class Main {
     public static void main(String[] args) {
-        int[] A = {2,7,11,15};
-        int B = 9;
+        int[] A = {2,3,4};
+        int B = 6;
         int[] ans = twoSum(A,B);
         System.out.println(ans[0]+" "+ans[1]);
     }
@@ -44,15 +46,15 @@ public class Main {
     {
 //        int[] result = new int[2];
         int length = A.length;
+        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
         for(int i = 0; i< length; i++)
         {
-            for(int j=i+1; j<length; j++)
+            int temp = B - A[i];
+            if(hm.containsKey(temp))
             {
-                if(A[i]+A[j]==B)
-                {
-                    return new int[]{i+1,j+1};
-                }
+                return new int[]{hm.get(temp),i+1};
             }
+            hm.put(A[i],i+1);
         }
         return new int[]{-1,-1};
     }
